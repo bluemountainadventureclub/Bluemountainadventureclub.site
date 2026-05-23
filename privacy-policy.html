@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NovaScan — QR Generator | Privacy Policy | BLUE MOUNTAIN ADVENTURE CLUB (SMC PRIVATE) LIMITED</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0d14;
+      --bg2: #0f1320;
+      --card: #141928;
+      --border: #1f2a40;
+      --accent: #00c2ff;
+      --accent2: #7b5cff;
+      --text: #e8edf5;
+      --muted: #7a8899;
+      --tag-bg: #0d1f30;
+      --tag-border: #1a3a55;
+      --radius: 14px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 13, 20, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent);
+      display: inline-block;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 5rem 2rem 3.5rem;
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse at center, rgba(0,194,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.03em;
+    }
+    .badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .hero .subtitle {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 580px;
+      font-weight: 300;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .meta-item .label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .meta-item .value {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+    }
+    .sep { width: 1px; background: var(--border); align-self: stretch; }
+
+    /* ── SUMMARY CARDS ── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      max-width: 860px;
+      margin: 0 auto 3.5rem;
+      padding: 0 2rem;
+    }
+    .summary-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .summary-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .summary-card .icon {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+    .summary-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .summary-card p {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .section {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 0;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-weight: 700;
+      padding-top: 0.25rem;
+    }
+    .section-body h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    .section-body p {
+      color: #9aabb8;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 0.85rem;
+    }
+    .section-body p:last-child { margin-bottom: 0; }
+    .section-body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      margin: 0.75rem 0 0.85rem;
+    }
+    .section-body ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.93rem;
+      color: #9aabb8;
+      line-height: 1.6;
+    }
+    .section-body ul li::before {
+      content: '→';
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .highlight-box {
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      font-size: 0.88rem;
+      color: #b8ccd8;
+      line-height: 1.65;
+    }
+    .pkg {
+      display: inline-block;
+      background: #0d1a2e;
+      border: 1px solid #1a3553;
+      border-radius: 6px;
+      padding: 2px 10px;
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── CONTACT STRIP ── */
+    .contact-strip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 2.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      max-width: 860px;
+      margin: 0 auto 3rem;
+      padding-left: 2rem; padding-right: 2rem;
+    }
+    .contact-strip h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .contact-strip p { color: var(--muted); font-size: 0.88rem; }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #000;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.65rem 1.4rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .contact-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.75rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    footer .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text);
+    }
+    footer p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .section { grid-template-columns: 1fr; gap: 0.5rem; }
+      .section-label { margin-bottom: 0.25rem; }
+      .nav-links { display: none; }
+      .contact-strip { flex-direction: column; align-items: flex-start; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#"><span class="dot"></span>NovaScan</a>
+    <ul class="nav-links">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#data">Data</a></li>
+      <li><a href="#permissions">Permissions</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#" class="active">Privacy Policy</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="badge">Privacy Policy — NovaScan</div>
+    <h1>Your Privacy.<br /><em>Fully Protected.</em></h1>
+    <p class="subtitle">
+      NovaScan collects zero personal data. No tracking. No servers. No sign-ups.
+      Everything stays on your device — always.
+    </p>
+    <div class="meta-row">
+      <div class="meta-item">
+        <span class="label">App Name</span>
+        <span class="value">NovaScan — QR Generator</span>
+      </div>
+      <div class="sep"></div>
+      <div class="meta-item">
+        <span class="label">Package</span>
+        <span class="value"><span class="pkg">com.novascan.qr.generator</span></span>
+      </div>
+      <div class="sep"></div>
+      <div class="meta-item">
+        <span class="label">Effective Date</span>
+        <span class="value">May 19, 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- SUMMARY CARDS -->
+  <section class="summary-grid">
+    <div class="summary-card">
+      <div class="icon">🔒</div>
+      <h3>No Data Collection</h3>
+      <p>We collect absolutely nothing from you — not even anonymised analytics.</p>
+    </div>
+    <div class="summary-card">
+      <div class="icon">📵</div>
+      <h3>Offline First</h3>
+      <p>QR codes are generated entirely on-device with no internet required.</p>
+    </div>
+    <div class="summary-card">
+      <div class="icon">🚫</div>
+      <h3>No Tracking</h3>
+      <p>No analytics, no ads, no third-party SDKs watching you.</p>
+    </div>
+    <div class="summary-card">
+      <div class="icon">👤</div>
+      <h3>No Accounts</h3>
+      <p>No sign-up, no login, no profile — just open and generate.</p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <div class="section" id="overview">
+      <span class="section-label">01 — Overview</span>
+      <div class="section-body">
+        <h2>About This Policy</h2>
+        <p>
+          This Privacy Policy applies to the <strong>NovaScan — QR Generator</strong> mobile application
+          (package name: <span class="pkg">com.novascan.qr.generator</span>), developed and published by
+          <strong>BLUE MOUNTAIN ADVENTURE CLUB (SMC PRIVATE) LIMITED</strong>.
+        </p>
+        <p>
+          We are committed to being transparent about how our app works. The short version:
+          NovaScan does not collect, transmit, store, or share any personal information whatsoever.
+          This policy exists to formally confirm that commitment.
+        </p>
+      </div>
+    </div>
+
+    <div class="section" id="data">
+      <span class="section-label">02 — Data Collection</span>
+      <div class="section-body">
+        <h2>We Collect No Data</h2>
+        <p>
+          NovaScan does not collect any personal or non-personal data from its users.
+          Specifically, the following are never collected, stored, or transmitted:
+        </p>
+        <ul>
+          <li>Personal identifiers (name, email, phone number, device ID)</li>
+          <li>QR code content or scan history</li>
+          <li>Usage statistics or in-app behaviour</li>
+          <li>Location data of any kind</li>
+          <li>Device information or IP addresses</li>
+          <li>Crash logs or diagnostics sent to any server</li>
+        </ul>
+        <div class="highlight-box">
+          All QR code generation happens entirely on your device. No data ever leaves your phone.
+          NovaScan has no backend server, no database, and no cloud infrastructure tied to user data.
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="section-label">03 — Third Parties</span>
+      <div class="section-body">
+        <h2>No Third-Party Services</h2>
+        <p>
+          NovaScan does not integrate any third-party analytics platforms, advertising networks,
+          crash-reporting SDKs, or social media trackers.
+        </p>
+        <ul>
+          <li>No Google Analytics or Firebase</li>
+          <li>No Facebook SDK or Meta Pixel</li>
+          <li>No advertising networks or ad identifiers</li>
+          <li>No third-party crash reporting tools</li>
+        </ul>
+        <p>
+          Your use of NovaScan is not shared with, sold to, or accessible by any third party under any circumstances.
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="section-label">04 — Children</span>
+      <div class="section-body">
+        <h2>Children's Privacy</h2>
+        <p>
+          NovaScan does not knowingly collect any information from children under the age of 13,
+          or under any higher age threshold required by applicable local law.
+        </p>
+        <p>
+          Since we collect no data from any user, NovaScan is inherently safe for users of all ages.
+          No parental consent mechanism is required as there is nothing to collect.
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="section-label">05 — Changes</span>
+      <div class="section-body">
+        <h2>Policy Updates</h2>
+        <p>
+          We may update this Privacy Policy from time to time. Any changes will be reflected
+          on this page with an updated effective date. We encourage you to review this policy
+          periodically to stay informed.
+        </p>
+        <p>
+          Continued use of NovaScan after any changes are posted constitutes your acceptance
+          of the updated policy.
+        </p>
+        <div class="highlight-box">
+          Current effective date: <strong>May 19, 2026</strong>. This is the initial release of this policy.
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="contact">
+      <span class="section-label">06 — Contact</span>
+      <div class="section-body">
+        <h2>Get in Touch</h2>
+        <p>
+          If you have any questions, concerns, or requests regarding this Privacy Policy
+          or the NovaScan application, please reach out to us. We aim to respond within 24 hours.
+        </p>
+        <ul>
+          <li><strong>Company:</strong> BLUE MOUNTAIN ADVENTURE CLUB (SMC PRIVATE) LIMITED</li>
+          <li><strong>Email:</strong> Bluemountainadventureclub73@gmail.com</li>
+          <li><strong>App Package:</strong> <span class="pkg">com.novascan.qr.generator</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- CONTACT STRIP -->
+  <div style="padding: 0 2rem; max-width: 860px; margin: 0 auto 3rem;">
+    <div class="contact-strip">
+      <div>
+        <h3>Have a Question?</h3>
+        <p>We're happy to help with any privacy concerns — real replies, always.</p>
+      </div>
+      <a class="contact-btn" href="mailto:Bluemountainadventureclub73@gmail.com">
+        ✉ Email Us
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="logo">NovaScan</span>
+    <p>© 2026 BLUE MOUNTAIN ADVENTURE CLUB (SMC PRIVATE) LIMITED. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
